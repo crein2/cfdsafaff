@@ -65,11 +65,11 @@
     <script>
         function checkAnswers() {
             const correctAnswers = {
-                q1: "b",
-                q2: "b",
-                q3: "a",
-                q4: "b",
-                q5: "b"
+                Первый вопрос: "b",
+                Второй вопрос: "b",
+                Третий вопрос: "a",
+                Четвертый вопрос: "b",
+                Пятый вопрос: "b"
             };
 
             let score = 0;
