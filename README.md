@@ -54,6 +54,7 @@
                 </div>
             </div>
 
+            
             <button type="button" onclick="checkAnswers()">Проверить ответы</button>
         </form>
 
@@ -97,9 +98,3 @@
 
 <!-- Футер -->
 <footer class="footer">
-    <p>МОУ "Средняя школа №99" • Ярославль 2025</p>
-    <p>Руководитель: Белов В.Н. • Учитель обществознания</p>
-</footer>
-
-</body>
-</html>
