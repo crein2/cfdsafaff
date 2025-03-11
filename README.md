@@ -1,79 +1,5 @@
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест: Цифровой рубль</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #2962ff;
-        }
-
-        .question {
-            margin-bottom: 20px;
-        }
-
-        .options label {
-            display: block;
-            margin: 5px 0;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #2962ff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #1e4db7;
-        }
-
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .feedback {
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        .correct {
-            color: green;
-        }
-
-        .incorrect {
-            color: red;
-        }
-    </style>
-</head>
-<body>
+<!-- Тест "Проверь свои знания" -->
+<section class="content-section">
     <div class="container">
         <h1>Тест: Цифровой рубль</h1>
 
@@ -137,7 +63,6 @@
 
     <script>
         function checkAnswers() {
-            // Правильные ответы
             const correctAnswers = {
                 q1: "b",
                 q2: "b",
@@ -149,7 +74,6 @@
             let score = 0;
             let feedback = "";
 
-            // Проверка ответов
             for (let question in correctAnswers) {
                 const selected = document.querySelector(`input[name="${question}"]:checked`);
                 const userAnswer = selected ? selected.value : null;
@@ -162,7 +86,6 @@
                 }
             }
 
-            // Вывод результата
             const resultDiv = document.getElementById("result");
             resultDiv.textContent = `Вы ответили правильно на ${score} из 5 вопросов!`;
 
@@ -170,5 +93,13 @@
             feedbackDiv.innerHTML = feedback;
         }
     </script>
+</section>
+
+<!-- Футер -->
+<footer class="footer">
+    <p>МОУ "Средняя школа №99" • Ярославль 2025</p>
+    <p>Руководитель: Белов В.Н. • Учитель обществознания</p>
+</footer>
+
 </body>
 </html>
