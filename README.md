@@ -139,11 +139,11 @@
         function checkAnswers() {
             // Правильные ответы
             const correctAnswers = {
-                q1: "b",
-                q2: "b",
-                q3: "a",
-                q4: "b",
-                q5: "b"
+                q1: "2",
+                q2: "2",
+                q3: "1",
+                q4: "2",
+                q5: "2"
             };
 
             let score = 0;
