@@ -58,6 +58,19 @@
             text-align: center;
             font-weight: bold;
         }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -119,6 +132,7 @@
         </form>
 
         <div class="result" id="result"></div>
+        <div class="feedback" id="feedback"></div>
     </div>
 
     <script>
@@ -133,19 +147,27 @@
             };
 
             let score = 0;
+            let feedback = "";
 
             // Проверка ответов
             for (let question in correctAnswers) {
                 const selected = document.querySelector(`input[name="${question}"]:checked`);
-                if (selected && selected.value === correctAnswers[question]) {
+                const userAnswer = selected ? selected.value : null;
+
+                if (userAnswer === correctAnswers[question]) {
                     score++;
+                    feedback += `<p class="correct">Вопрос ${question}: Правильно!</p>`;
+                } else {
+                    feedback += `<p class="incorrect">Вопрос ${question}: Неправильно. Верный ответ: ${correctAnswers[question]}</p>`;
                 }
             }
 
             // Вывод результата
             const resultDiv = document.getElementById("result");
             resultDiv.textContent = `Вы ответили правильно на ${score} из 5 вопросов!`;
-            resultDiv.style.color = score >= 4 ? "green" : "red";
+
+            const feedbackDiv = document.getElementById("feedback");
+            feedbackDiv.innerHTML = feedback;
         }
     </script>
 </body>
