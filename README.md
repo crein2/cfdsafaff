@@ -92,12 +92,6 @@
     <div class="gallery-item" data-src="image1.jpg">
         <img src="thumbnail1.jpg" alt="Изображение 1">
     </div>
-    <div class="gallery-item" data-src="image2.jpg">
-        <img src="thumbnail2.jpg" alt="Изображение 2">
-    </div>
-    <!-- Добавьте больше изображений -->
-</div>
-
 <div class="modal" id="modal">
     <span class="close">&times;</span>
     <img class="modal-img" id="modalImg">
