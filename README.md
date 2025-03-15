@@ -2,100 +2,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка и отображение картинки</title>
+    <title>Галерея с анимацией</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-            color: #333;
+            margin: 20px;
+            background: #f0f0f0;
         }
 
-        h1 {
-            margin-top: 20px;
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
 
-        .container {
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .upload-section {
-            margin-bottom: 20px;
-        }
-
-        .upload-section input[type="file"] {
-            margin-top: 10px;
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
+        .gallery-item {
             cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
             transition: transform 0.3s ease;
         }
 
-        .image-preview img:hover {
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item:hover {
             transform: scale(1.05);
         }
 
-        .hidden {
+        /* Модальное окно */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 800px;
+            max-height: 80vh;
+            animation: zoomIn 0.5s ease;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .close {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #ff4444;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Загрузите свою картинку</h1>
 
-        <!-- Раздел для загрузки изображения -->
-        <div class="upload-section">
-            <p>Выберите файл для загрузки:</p>
-            <input type="file" id="imageUpload" accept="image/*">
-        </div>
-
-        <!-- Предварительный просмотр изображения -->
-        <div class="image-preview hidden" id="imagePreview">
-            <p>Ваша картинка:</p>
-            <a id="imageLink" href="#" target="_blank">
-                <img id="previewImage" src="" alt="Загруженное изображение">
-            </a>
-        </div>
+<div class="gallery" id="gallery">
+    <div class="gallery-item" data-src="image1.jpg">
+        <img src="thumbnail1.jpg" alt="Изображение 1">
     </div>
+    <div class="gallery-item" data-src="image2.jpg">
+        <img src="thumbnail2.jpg" alt="Изображение 2">
+    </div>
+    <!-- Добавьте больше изображений -->
+</div>
 
-    <script>
-        // Получаем элементы DOM
-        const imageUpload = document.getElementById('imageUpload');
-        const imagePreview = document.getElementById('imagePreview');
-        const previewImage = document.getElementById('previewImage');
-        const imageLink = document.getElementById('imageLink');
+<div class="modal" id="modal">
+    <span class="close">&times;</span>
+    <img class="modal-img" id="modalImg">
+</div>
 
-        // Добавляем обработчик события для загрузки файла
-        imageUpload.addEventListener('change', function (event) {
-            const file = event.target.files[0]; // Получаем выбранный файл
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.querySelector('.close');
 
-            if (file) {
-                const reader = new FileReader(); // Создаем объект FileReader
-
-                // Когда файл будет загружен
-                reader.onload = function (e) {
-                    previewImage.src = e.target.result; // Устанавливаем src изображения
-                    imageLink.href = e.target.result; // Устанавливаем ссылку для клика
-                    imagePreview.classList.remove('hidden'); // Показываем предпросмотр
-                };
-
-                reader.readAsDataURL(file); // Читаем файл как Data URL
-            } else {
-                imagePreview.classList.add('hidden'); // Скрываем предпросмотр, если файл не выбран
-            }
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                modalImg.setAttribute('src', src);
+                modal.style.display = 'flex';
+                
+                // Анимация появления
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            });
         });
-    </script>
+
+        // Закрытие модального окна
+        const closeModal = () => {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 500); // совпадает с длительностью анимации
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    });
+</script>
+
 </body>
 </html>
