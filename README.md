@@ -2,18 +2,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
+    <title>'Arial'</title>
+    <style>
+        /* Подключение локального шрифта */
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('fonts/CustomFont.ttf') format('truetype');
+        }
 
-    <!-- Добавление favicon -->
-    <link rel="icon" href="https://avatars.mds.yandex.net/i?id=a28f71c73588965f084c3725901e4f25_l-5352007-images-thumbs&n=13" type="image/x-icon">
-
-    <!-- Если используется PNG-файл -->
-    <link rel="icon" href="https://avatars.mds.yandex.net/i?id=a28f71c73588965f084c3725901e4f25_l-5352007-images-thumbs&n=13" type="image/png">
-
-    <!-- Для Apple Touch Icon (для iOS устройств) -->
-    <link rel="apple-touch-icon" href="https://avatars.mds.yandex.net/i?id=a28f71c73588965f084c3725901e4f25_l-5352007-images-thumbs&n=13">
+        /* Применение шрифта */
+        body {
+            font-family: 'CustomFont', sans-serif;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет, мир!</h1>
+    <h1>Заголовок с локальным шрифтом</h1>
+    <p>Это текст с использованием локального шрифта.</p>
 </body>
 </html>
